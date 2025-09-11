@@ -7,6 +7,8 @@ public class WASDMovement : MonoBehaviour
     public float speed = 5f;
     public float jumpForce = 5f;
     private Rigidbody2D rb2d;
+    float currentSpeed;
+    public float extraSpeed = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +19,7 @@ public class WASDMovement : MonoBehaviour
          * forces such as gravity, receive forces and torque through scripting, 
          * and interact with other physics-enabled objects in the scene through collisions.*/
         rb2d = GetComponent<Rigidbody2D>();
+        currentSpeed = speed;
     }
 
     // Update is called once per frame
@@ -28,10 +31,12 @@ public class WASDMovement : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
+        
         //access the velocity property of rigidbody
         //create a new vector 2 that multiplies the input by speed
         //horizontal input is either 1 or -1 depending on the key you press
-        rb2d.velocity = new Vector2(horizontalInput * speed, verticalInput * speed);
+        rb2d.velocity = new Vector2(horizontalInput * currentSpeed, verticalInput * currentSpeed);
+        Debug.Log("current speed: " + currentSpeed);
 
         //if the player hits space
         if (Input.GetKey(KeyCode.Space))
@@ -72,6 +77,9 @@ public class WASDMovement : MonoBehaviour
             Debug.Log("Hit Wall");
             //maybe when the player hits the wall it reverses or increases their velocity
         }*/
+
+        currentSpeed = extraSpeed;
+        Debug.Log("changespeed");
     }
 
     //objects that overlap
