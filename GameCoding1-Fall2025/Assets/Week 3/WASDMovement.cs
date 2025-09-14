@@ -9,6 +9,7 @@ public class WASDMovement : MonoBehaviour
     private Rigidbody2D rb2d;
     float currentSpeed;
     public float extraSpeed = 10;
+    int jumpCount;
 
     // Start is called before the first frame update
     void Start()
