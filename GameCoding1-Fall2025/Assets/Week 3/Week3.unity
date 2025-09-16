@@ -155,8 +155,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumpForce: 5
+  jumpForce: 100
   extraSpeed: 30
+  sprintOn: 0
 --- !u!50 &284784617
 Rigidbody2D:
   serializedVersion: 4
@@ -309,7 +310,7 @@ GameObject:
   - component: {fileID: 300699140}
   m_Layer: 0
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
