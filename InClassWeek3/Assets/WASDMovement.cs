@@ -8,8 +8,9 @@ public class WASDMovement : MonoBehaviour
     public float jumpForce;
 
     //score variables
+    //keeps track of score
     private int score;
-    //text that displays the score
+    //displays score
     public TextMeshProUGUI scoreText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -78,27 +79,23 @@ public class WASDMovement : MonoBehaviour
         //compare tag
         //transform.position
 
-        //if the player triggers a coin
+
+
         if (collision.gameObject.CompareTag("Coins"))
         {
-            //add to our score
             AddScore(1);
-            //and then print out our score
-            scoreText.text = "Score: " + score.ToString();
+            //changes the text to whatever the current score is!
+            scoreText.text = "Score" + score.ToString();
             Destroy(collision.gameObject);
         }
-
-        /*if (collision.gameObject.CompareTag("SuperCoins"))
-        {
-            AddScore(5);
-
-        }*/
     }
 
-    private void AddScore(int amount)
+    private void AddScore(int amt)
     {
-        //it takes the score and adds the amount back into it
-        score += amount;
+        //we are adding the amount to the score to update it
+        score += amt;
     }
+
+    
 
 }
