@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class WASDMovement : MonoBehaviour
@@ -5,6 +6,11 @@ public class WASDMovement : MonoBehaviour
     public float speed = 4f;
     private Rigidbody2D rb2D;
     public float jumpForce;
+
+    //score variables
+    private int score;
+    //text that displays the score
+    public TextMeshProUGUI scoreText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -71,7 +77,28 @@ public class WASDMovement : MonoBehaviour
         //place an insivible trigger somewhere in the game that moves the players position
         //compare tag
         //transform.position
+
+        //if the player triggers a coin
+        if (collision.gameObject.CompareTag("Coins"))
+        {
+            //add to our score
+            AddScore(1);
+            //and then print out our score
+            scoreText.text = "Score: " + score.ToString();
+            Destroy(collision.gameObject);
+        }
+
+        /*if (collision.gameObject.CompareTag("SuperCoins"))
+        {
+            AddScore(5);
+
+        }*/
     }
 
+    private void AddScore(int amount)
+    {
+        //it takes the score and adds the amount back into it
+        score += amount;
+    }
 
 }
