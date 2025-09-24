@@ -8,6 +8,7 @@ TagManager:
   - HitMe
   - Wall
   - sound2
+  - Coins
   layers:
   - Default
   - TransparentFX

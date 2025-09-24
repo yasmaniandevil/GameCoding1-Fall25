@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class WASDMovement : MonoBehaviour
@@ -11,6 +12,10 @@ public class WASDMovement : MonoBehaviour
     public float extraSpeed = 10;
     int jumpCount;
     public bool sprintOn = false;
+
+    private int score;
+    public TextMeshProUGUI scoreText;
+    private int maxJumps = 2;
 
     // Start is called before the first frame update
     void Start()
@@ -31,13 +36,14 @@ public class WASDMovement : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
         
         //if the player hits space
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && jumpCount < maxJumps)
         {
             Debug.Log("hit space");
             //then we are going to keep the velocity on the x
             //and change the y to jump force
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
             Debug.Log("Jump");
+            jumpCount++;
         }
 
         //exercise can you make a sprinting button and if statement?
@@ -52,6 +58,8 @@ public class WASDMovement : MonoBehaviour
             currentSpeed = speed;
             rb2d.velocity = new Vector2(horizontalInput * currentSpeed, verticalInput * currentSpeed);
         }
+        
+        //if()
 
         //Debug.Log("current speed: " + currentSpeed);
     }
@@ -75,6 +83,12 @@ public class WASDMovement : MonoBehaviour
         
     }
 
+    void AddScore(int amt)
+    {
+        score += amt;
+        //scoreText.text = "Score: " + score.ToString();
+    }
+    
     //objects that overlap
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -87,5 +101,16 @@ public class WASDMovement : MonoBehaviour
         {
             transform.position = new Vector2(5, 8);
         }*/
+
+        if (collision.gameObject.CompareTag("Coins"))
+        {
+            AddScore(1);
+            scoreText.text = "Score: " + score.ToString();
+            //Destroy(gameObject);
+            Debug.Log(score);
+        }
     }
+    
+    
+
 }
