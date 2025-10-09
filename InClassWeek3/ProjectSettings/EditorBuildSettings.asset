@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Week5/Week5_UI.unity
     guid: b016b124f6779b5439d3f83b5aacd37c
   - enabled: 1
-    path: Assets/Scenes/Week3.unity
+    path: Assets/Week3/Week3.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 3590b91b4603b465dbb4216d601bff33, type: 3}
