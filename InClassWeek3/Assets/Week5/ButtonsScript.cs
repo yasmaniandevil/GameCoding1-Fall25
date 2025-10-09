@@ -20,10 +20,10 @@ public class ButtonsScript : MonoBehaviour
     //we are making a loadscene function
     //that passes the name of our scene into it when we call the function
     //inside the () is called parameters or arguments
-    public void LoadScene(string sceneName)
+    /*public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
-    }
+    }*/
 
     //every function we call through the button has to be public
     public void Toggle()
