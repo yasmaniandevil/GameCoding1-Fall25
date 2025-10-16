@@ -9,6 +9,8 @@ TagManager:
   - Wall
   - sound2
   - Coins
+  - Collect
+  - Key
   layers:
   - Default
   - TransparentFX
