@@ -33,7 +33,7 @@ public class Drawing : MonoBehaviour
     {
         //recognize the point on the camera where mouse is clicked
         Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
-
+        Debug.Log("Mouse position: " + mousePos);
         if(lastPos != mousePos)
         {
             //call our add point void
@@ -47,20 +47,29 @@ public class Drawing : MonoBehaviour
 
     void Draw()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        //the problem was we are calling createstroke every frame the mouse is help
+        //and you ever increased the ppositionCont before setting positions, and thats why it spawns from 0, 0, 0
+        if (Input.GetKeyDown(KeyCode.Mouse0)) //create stroke once on press
         {
+            
             CreateStroke();
+            PointToMousePos(); //add first point here
         }
-        else if (Input.GetKey(KeyCode.Mouse0))
+        
+        else if (Input.GetKey(KeyCode.Mouse0)) //keep adding while its held
         {
             PointToMousePos();
         }
-        else 
+        else if(Input.GetKeyUp(KeyCode.Mouse0)) 
         { 
             currentLineRenderer = null;        
         }
-    }
 
+       
+    }
+    
+
+    //we need to add a reset
     //void to instantiate our pencil stroke
     public void CreateStroke()
     {
@@ -68,9 +77,12 @@ public class Drawing : MonoBehaviour
         GameObject strokeInstance = Instantiate(pencil);  
         currentLineRenderer = strokeInstance.GetComponent<LineRenderer>();
         //must have two points to form a line
-        Vector2 mousePos = m_camera.ScreenToWorldPoint (Input.mousePosition);
-        currentLineRenderer.SetPosition(0, mousePos);
-        currentLineRenderer.SetPosition(0, mousePos);
+        //Vector2 mousePos = m_camera.ScreenToWorldPoint (Input.mousePosition);
+        //currentLineRenderer.SetPosition(0, mousePos);
+        //currentLineRenderer.SetPosition(0, mousePos);
+
+        currentLineRenderer.positionCount = 0;
+        currentLineRenderer.useWorldSpace = true;
     }
 
 
