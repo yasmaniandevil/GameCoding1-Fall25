@@ -44,11 +44,13 @@ public class PlayerShip : MonoBehaviour
         transform.position = new Vector3(clampedX, transform.position.y, transform.position.z);
 
         shootTimer += Time.deltaTime;
-        if(Input.GetKey(KeyCode.Space) && shootTimer >= shootInterval)
+        if(Input.GetKeyDown(KeyCode.Space) && shootTimer >= shootInterval)
         {
+            Debug.Log("Hit Space");
             Shoot();
             //reset the timer
             shootTimer = 0;
+            Debug.Log("Shoot");
         }
     }
 
