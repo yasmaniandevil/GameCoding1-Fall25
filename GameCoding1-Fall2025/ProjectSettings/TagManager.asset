@@ -11,11 +11,12 @@ TagManager:
   - Coins
   - Collect
   - Key
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Enemy
   - Water
   - UI
   - 

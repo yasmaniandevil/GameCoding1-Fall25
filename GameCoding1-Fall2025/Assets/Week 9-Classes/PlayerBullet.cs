@@ -24,11 +24,16 @@ public class PlayerBullet : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.CompareTag("Enemy"))
+        if (collision.CompareTag("Enemy"))
         {
-            
+            Enemy enemy = collision.GetComponent<Enemy>();
+            if (enemy != null)//check to see if enemy has been assigned
+            {
+                enemy.TakeDamage(damage);
+            } 
+            Destroy(gameObject);
         }
     }
 }
