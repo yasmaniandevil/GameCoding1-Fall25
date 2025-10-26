@@ -97,7 +97,10 @@ public class Drawing : MonoBehaviour
         //if the mouse is released
         if(Input.GetKeyUp(KeyCode.Mouse0)) 
         { 
-            currentLineRenderer = null;        
+            
+            StrokeCollider(currentLineRenderer);
+            Debug.Log("calling stroke collider");
+            currentLineRenderer = null;
         }
 
        
@@ -161,6 +164,39 @@ public class Drawing : MonoBehaviour
         currentSharpness = maxSharpness;
         canDraw = true;
     }
+
+    private void StrokeCollider(LineRenderer lr, float closeThreshold = 0.05f)
+    {
+        int count = lr.positionCount;
+        if (count < 3) return; //can't make a closed shape
+
+        Vector2[] points = new Vector2[count];
+        for (int i = 0; i < count; i++)
+        {
+            Vector3 p = lr.GetPosition(i);
+            points[i] = new Vector2(p.x, p.y);
+
+        }
+
+        //ensure the loop is closed (append first point if needed)
+        if ((points[0] - points[count -1]).sqrMagnitude > closeThreshold * closeThreshold) 
+        {
+            var closed = new Vector2[count + 1];
+            for(int i = 0;i < count;i++) closed[i] = points[i];
+            closed[count] = points[0];
+            points = closed;
+
+        }
+
+        //add a polygon collider
+        PolygonCollider2D polyCol = lr.GetComponent<PolygonCollider2D>();
+        if(polyCol == null) polyCol = lr.gameObject.AddComponent<PolygonCollider2D>();
+
+        polyCol.isTrigger = false;
+        polyCol.pathCount = 1;
+        polyCol.SetPath(0, points);
+    }
+    
 
 
     
