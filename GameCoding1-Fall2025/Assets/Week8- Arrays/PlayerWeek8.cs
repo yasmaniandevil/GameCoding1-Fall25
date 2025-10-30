@@ -7,12 +7,13 @@ public class PlayerWeek8 : MonoBehaviour
     Rigidbody2D rb;
     float speed = 5;
 
-    
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -29,5 +30,11 @@ public class PlayerWeek8 : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         
+    }
+
+    private void Move(Vector2 direction)
+    {
+        animator.SetBool("isWalking", true);
+        animator.SetFloat("currentInputX", direction.x);
     }
 }
