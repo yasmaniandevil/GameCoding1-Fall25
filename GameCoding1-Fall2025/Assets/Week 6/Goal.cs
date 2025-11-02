@@ -43,7 +43,7 @@ public class Goal : MonoBehaviour
                 collision.gameObject.transform.position = new Vector3(0, 0, 0);
 
                 //and we reset the ball's linear velocity to zero
-                collision.gameObject.GetComponent<Rigidbody2D>().velocity= Vector3.zero;
+                collision.gameObject.GetComponent<Rigidbody2D>().linearVelocity= Vector3.zero;
 
                 //then we increment our score variable up
                 score++;

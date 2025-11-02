@@ -38,7 +38,7 @@ public class TestPlayer : MonoBehaviour
             Debug.Log("hit space");
             //then we are going to keep the velocity on the x
             //and change the y to jump force
-            rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
+            rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, jumpForce);
             Debug.Log("Jump");
         }
 
@@ -47,12 +47,12 @@ public class TestPlayer : MonoBehaviour
         {
             currentSpeed = extraSpeed;
             sprintOn = true;
-            rb2d.velocity = new Vector2(horizontalInput * currentSpeed, verticalInput * currentSpeed);
+            rb2d.linearVelocity = new Vector2(horizontalInput * currentSpeed, verticalInput * currentSpeed);
         }
 
         {
             currentSpeed = speed;
-            rb2d.velocity = new Vector2(horizontalInput * currentSpeed, verticalInput * currentSpeed);
+            rb2d.linearVelocity = new Vector2(horizontalInput * currentSpeed, verticalInput * currentSpeed);
         }
 
         //Debug.Log("current speed: " + currentSpeed);

@@ -23,6 +23,6 @@ public class Bullet : MonoBehaviour
     private void MoveBullet(Vector3 direction, float speed)
     {
         //transform.position += direction * speed * Time.deltaTime;
-        rb2D.velocity = direction * speed;
+        rb2D.linearVelocity = direction * speed;
     }
 }

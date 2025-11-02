@@ -47,7 +47,7 @@ public class TwoPlayerMove : MonoBehaviour
         {
             //give the player a "positive" (up) push on the y axis
             //they keep their CURRENT linear velocity on the x axis
-            rb2D.velocity = new Vector2(rb2D.velocity.x, speed);
+            rb2D.linearVelocity = new Vector2(rb2D.linearVelocity.x, speed);
             //and set moving to true
             isMoving = true;
         }
@@ -56,26 +56,26 @@ public class TwoPlayerMove : MonoBehaviour
         {
             //if the key is A, we want them to go left
             //that's a negative push on the x axis
-            rb2D.velocity = new Vector2(-speed, rb2D.velocity.y);
+            rb2D.linearVelocity = new Vector2(-speed, rb2D.linearVelocity.y);
             isMoving = true;
         }
         //same check, but going "down"
         if (Input.GetKey(KeyCode.S))
         {
-            rb2D.velocity = new Vector2(rb2D.velocity.x, -speed);
+            rb2D.linearVelocity = new Vector2(rb2D.linearVelocity.x, -speed);
             isMoving = true;
         }
         //and right
         if (Input.GetKey(KeyCode.D))
         {
-            rb2D.velocity = new Vector2(speed, rb2D.velocity.y);
+            rb2D.linearVelocity = new Vector2(speed, rb2D.linearVelocity.y);
             isMoving = true;
         }
         //after all this, if a key hasn't been pressed, and the player isn't moving...
         else if (isMoving != true)
         {
             //make their linearvelocity zero
-            rb2D.velocity = new Vector2(0, 0);
+            rb2D.linearVelocity = new Vector2(0, 0);
         }
     }
     
@@ -87,27 +87,27 @@ public class TwoPlayerMove : MonoBehaviour
         //check if key code is up
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            rb2D.velocity = new Vector2(rb2D.velocity.x, speed);
+            rb2D.linearVelocity = new Vector2(rb2D.linearVelocity.x, speed);
             isMoving = true;
         }
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            rb2D.velocity = new Vector2(-speed, rb2D.velocity.y);
+            rb2D.linearVelocity = new Vector2(-speed, rb2D.linearVelocity.y);
             isMoving = true;
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            rb2D.velocity = new Vector2(rb2D.velocity.x, -speed);
+            rb2D.linearVelocity = new Vector2(rb2D.linearVelocity.x, -speed);
             isMoving = true;
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            rb2D.velocity = new Vector2(speed, rb2D.velocity.y);
+            rb2D.linearVelocity = new Vector2(speed, rb2D.linearVelocity.y);
             isMoving = true;
         }
         else if (isMoving != true)
         {
-            rb2D.velocity = new Vector2(0, 0);
+            rb2D.linearVelocity = new Vector2(0, 0);
         }
     }
 }
