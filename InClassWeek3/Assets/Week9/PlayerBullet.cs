@@ -33,7 +33,7 @@ public class PlayerBullet : MonoBehaviour
             EnemyBase enemy = collision.GetComponent<EnemyBase>();
             if(enemy != null) //check to see if enemy has been assigned
             {
-                //enemy take damage here
+                enemy.TakeDamage(damage);
             }
 
             Destroy(gameObject);
