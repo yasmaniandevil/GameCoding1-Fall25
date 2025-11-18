@@ -21,18 +21,22 @@ public class Player : MonoBehaviour
     public LayerMask groundLayer;
     public Transform groundCheck;
 
-    public int lives = 3;
-    public TextMeshProUGUI livesText;
-
     public Transform defaultRespawn;
     private Transform currentRespawn;
 
-    public List <GameObject> disappearingPlatforms = new List<GameObject>();
+    public PlayerHealth playerHealthScript;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        UpdateText();
+        
+        //if our player health script doesnt have the reference in the inspector
+        if(playerHealthScript == null)
+        {
+            //grab our playerhealthscript and assign it to our variable
+            playerHealthScript = GetComponent<PlayerHealth>();
+        }
     }
 
     // Update is called once per frame
@@ -122,11 +126,7 @@ public class Player : MonoBehaviour
     }
 
     //this function just changes our text to reflect the current amount of lives we have!
-    private void UpdateText()
-    {
-        livesText.text = "Lives: " + lives.ToString();
-    }
-
+  
     private void Respawn()
     {
         
@@ -135,8 +135,11 @@ public class Player : MonoBehaviour
         {
             Transform target;
             //we subtract 1 life
-            lives--;
-            UpdateText();
+            if(playerHealthScript != null)
+            {
+                //playerHealthScript.LoseLife();
+                playerHealthScript.TakeDamage(1);
+            }
 
             if ((currentRespawn != null))
             {
@@ -150,11 +153,7 @@ public class Player : MonoBehaviour
             transform.position = target.position;
             rb2d.linearVelocity = Vector2.zero;
 
-            //for every single disappearing platform. reset it. 
-            foreach(GameObject platform in disappearingPlatforms)
-            {
-                platform.GetComponent<DisappearingPlatform>().ResetPlatform();
-            }
+            GameManager.instance.RespawnPlatforms();
         }
     }
 
