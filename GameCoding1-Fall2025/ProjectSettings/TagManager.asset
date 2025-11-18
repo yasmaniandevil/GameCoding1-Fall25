@@ -12,6 +12,7 @@ TagManager:
   - Collect
   - Key
   - Enemy
+  - SpeedBoost
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Water
   - UI
   - GroundLayer
-  - 
+  - Player
   - 
   - 
   - 

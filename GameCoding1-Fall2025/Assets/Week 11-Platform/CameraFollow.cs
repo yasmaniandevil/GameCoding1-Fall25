@@ -3,8 +3,8 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     public Transform player;
-    public float smoothSpeed;
-    public Vector3 offset;
+    private float smoothSpeed = 125f;
+    private Vector3 offset = new Vector3(0, 0, -10f);
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
